@@ -97,9 +97,9 @@
 }
 
 @media (max-width: 600px){
-    #calc_container{
-        width: 90%;
-        left: 5%;
-        top: 6%;
+    #calc{
+        left: 50%;
+        top: 40%;
+        transform: translate(-50%, -50%);
     }
 }
