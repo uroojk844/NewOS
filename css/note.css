@@ -1,0 +1,8 @@
+#notebook{
+    display: block;
+}
+
+iframe{
+    height: 300px;
+    width: 100%;
+}
