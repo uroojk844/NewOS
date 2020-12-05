@@ -1,0 +1,143 @@
+body{
+    width: 100%;
+    height: 100%;
+}
+
+#main{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url("/wall/3.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+
+#status_bar{
+    position: absolute;
+    color: white;
+    width: 100%;
+}
+
+.hidev{
+    visibility: hidden;
+}
+
+.bar-items{
+    padding: 0 5px;
+}
+
+#network{
+    font-size: 14px;
+}
+
+#time{
+    letter-spacing: 1px;
+    position: fixed;
+    left: 50%;
+    top: 35%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    user-select: none;
+}
+
+#navigator{
+    position: fixed;
+    bottom: 30px;
+    width:80%;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.5);
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 12px;
+    padding: 10px;
+    overflow: hidden;
+    overflow-x: scroll;
+}
+
+#navigator::-webkit-scrollbar{
+    display: none;
+}
+
+.app{
+    float: left;
+    padding: 0 10px;
+    color: #111;
+    text-align: center;
+}
+
+.app:hover{
+    color: #673ab7;
+}
+
+
+
+@media (max-width:600px){
+    #navigator{
+        width: 90%;
+        display: flex;
+    }
+    #navigator .app{
+        width: 100%;
+    }
+
+    #time{
+        width: 230px;
+    }
+
+    #time span{
+        font-size: 36px;
+    }
+}
+
+@media (min-width:601px){
+    #network{
+        font-size: 18px;
+    }
+    #battery{
+        font-size: 20px;
+    }
+    #navigator{
+        width: 80%;
+        display: flex;
+    }
+    #navigator .app{
+        width: 100%;
+    }
+    #time{
+        width: 290px;
+    }
+
+    #time span{
+        font-size: 56px;
+    }
+}
+
+@media (min-width:933px){
+    #network{
+        font-size: 18px;
+    }
+    #battery{
+        font-size: 20px;
+    }
+
+    #navigator{
+        padding: 10px;
+    }
+
+    #navigator{
+        width: 70%;
+        display: flex;
+    }
+    #navigator .app{
+        width: 100%;
+    }
+    #time{
+        width: 350px;
+    }
+
+    #time span{
+        font-size: 66px;
+    }
+}
