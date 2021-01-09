@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/calc.css">
     <link rel="stylesheet" href="css/todo.css">
     <link rel="stylesheet" href="css/note.css">
+    <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
 
@@ -59,13 +60,13 @@
                 <i class="fab fa-youtube fa-2x"></i>
             </div>
             <div class="app">
-                <i class="fab fa-wikipedia-w fa-2x"></i>
+                <i class="fab fa-wikipedia-w fa-2x" onclick="open_app('wiki', 'https://www.wikipedia.org')"></i>
             </div>
             <div class="app">
                 <i class="fab fa-google fa-2x"></i>
             </div>
             <div class="app">
-                <i class="far fa-file-code fa-2x"></i>
+                <i class="far fa-file-code fa-2x" onclick="open_app('notebook','editor/index.htm')"></i>
             </div>
             <div class="app" onclick="open_app('calc')">
                 <i class="fas fa-calculator fa-2x"></i>
@@ -77,60 +78,6 @@
                 <i class="fas fa-clipboard-list fa-2x"></i>
             </div>
         </div>
-    </div>
-
-    <div id="calc" class="w3-round-large w3-card w3-animate-zoom">
-        <div class="bar w3-border-bottom" id="calc_title">
-            <div class="bar-items icons close w3-circle" onclick="close_app('calc')"><i class="fas fa-times"></i></div>
-            <div class="bar-items icons minus w3-circle" onclick="close_app('calc')"><i class="fas fa-minus"></i></div>
-            <div class="title">Calculator</div>
-        </div>
-        <div id="display" contenteditable="true"></div>
-        <div class="buttons">
-            <div onclick="insert(1)" class="button">1</div>
-            <div onclick="insert(2)" class="button">2</div>
-            <div onclick="insert(3)" class="button">3</div>
-            <div onclick="insert('+')" class="button symbol"><i class="fas fa-plus"></i></div>
-            <div onclick="insert(4)" class="button">4</div>
-            <div onclick="insert(5)" class="button">5</div>
-            <div onclick="insert(6)" class="button">6</div>
-            <div onclick="insert('-')" class="button symbol"><i class="fas fa-minus"></i></div>
-            <div onclick="insert(7)" class="button">7</div>
-            <div onclick="insert(8)" class="button">8</div>
-            <div onclick="insert(9)" class="button">9</div>
-            <div onclick="insert('*')" class="button symbol"><i class="fas fa-times"></i></div>
-            <div onclick="insert('.')" class="button">.</div>
-            <div onclick="insert(0)" class="button">0</div>
-            <div onclick="back()" class="button symbol"><i class="fas fa-arrow-left"></i></div>
-            <div onclick="insert('/')" class="button symbol"><i class="fas fa-divide"></i></div>
-            <div class="button symbol" onclick="$('#display').text(eval($('#display').text()))" style="width:165px"><i class="fas fa-equals"></i></div>
-            <div onclick="$('#display').text('')" class="button symbol">C</div>
-        </div>
-    </div>
-
-    <div id="todo" class="w3-round-large w3-card w3-animate-zoom">
-        <div class="bar w3-border-bottom" id="todo_title">
-            <div class="bar-items icons close w3-circle" onclick="close_app('todo')"><i class="fas fa-times"></i></div>
-            <div class="bar-items icons minus w3-circle" onclick="close_app('todo')"><i class="fas fa-minus"></i></div>
-            <div class="title">To-do Maker</div>
-        </div>
-        <div class="w3-row">
-            <div class="w3-col w3-black w3-button w3-right w3-padding-small addBtn" style="width: 50px;">Add</div>
-            <div class="w3-padding-small w3-rest" contenteditable="true"></div>
-        </div>
-
-        <div id="list_view"></div>
-    </div>
-
-    <div id="notebook" class="w3-round-large w3-card w3-animate-zoom">
-        <div class="bar w3-border-bottom" id="notebook_title">
-            <div class="bar-items icons close w3-circle" onclick="close_app('notebook')"><i class="fas fa-times"></i></div>
-            <div class="bar-items icons minus w3-circle" onclick="close_app('notebook')"><i class="fas fa-minus"></i></div>
-            <div class="title">Notebook</div>
-        </div>
-        <iframe src="http://workbook.epizy.com/" frameborder="0">
-
-        </iframe>
     </div>
 
     <script src="js/jquery-3.4.1.js"></script>

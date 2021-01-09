@@ -34,59 +34,65 @@ setInterval(() => {
     }
 }, 3000);
 
-var openApps = [];
+var openApps = {};
+var obj = Object.entries(openApps);
+var appName = {calc: "Calculator", todo: "To-do Maker", wiki: "Wikipedia", notebook: "Notebook"};
 
-
-function open_app(app){
-    openApps.push(app);
+function open_app(app, src=null){
+    obj.push([app,{'title':app+'_title','state': 'max'}]);
+    if(!(Object.keys(openApps).includes(app))){
+        createApp(app, src);
+    }
+    openApps = Object.fromEntries(obj); 
     $('#'+app).addClass('w3-show');
     options();
 }
 
+function createApp(app, src){
+let container = $("<div></div>").attr({"id":app,"class":"w3-round-large w3-card w3-animate-zoom"});
+let nav = $("<div></div>").attr({"class":"bar w3-border-bottom", "id":app+"_title"});
+let closeicon = $("<div></div>").attr({"class":"bar-items icons close w3-circle", "onclick": "close_app('"+app+"')"}).html("<i class='fas fa-times'></i>");
+let minusicon = $("<div></div>").attr({"class":"bar-items icons close w3-circle", "onclick": "close_app('"+app+"')"}).html("<i class='fas fa-minus'></i>");
+let apptitle = $("<div></div>").attr("class","title").text(appName[app]);
+let appFrame = "";
+let minicon = "";
+if(src==null){
+appFrame = $("<div></div>").attr({"class":'frame'}).load('./apps/'+app+'.htm');
+}else{
+minicon = $("<div></div>").attr({"class":"bar-items icons resize w3-circle", "onclick": "resize('"+app+"')"}).html("<i class='far fa-clone'></i>");
+appFrame = $("<iframe></iframe>").attr({"class":'frame',"src":src});
+}
+nav.append(closeicon,minicon,minusicon,apptitle);
+container.append(nav,appFrame);
+$('body').append(container);
+}
+
+function resize(app){
+    if(openApps[app].state=="max"){
+        $('#'+app).css({"width":"600px","height":"500px","border-radius":"8px"});
+        openApps[app].state="min";
+    }else{
+        $('#'+app).css({"width":"100%","height":"100%","border-radius":"0","top":"0","left":"0"});
+        openApps[app].state="max";
+    }
+}
+
 function close_app(app){
-    delete openApps[openApps.indexOf(app)];
+    if(openApps[app].state=="min"){
+        $('#'+app).css({"width":"100%","height":"100%","border-radius":"0","top":"0","left":"0"});
+    };
     $('#'+app).removeClass('w3-show');
     options();
 }
 
-function insert(n){
-    $("#display").append(n);
-}
-
-function back(){
-    let x = $("#display").text();
-    x = x.substr(0, x.length-1);
-    $("#display").text(x);
-}
-
-$('#todo .addBtn').click(function (e) { 
-    let a = $('#todo .w3-rest').text();
-    let item = $('<div></div>').attr('class','items');
-    let circle = $('<div></div>').attr('class','w3-ripple w3-left w3-padding-small circle').html('<i class="far fa-circle"></i>');
-    let name = $('<div></div>').attr('class','w3-left w3-padding-small name');
-    let del = $('<div></div>').attr('class','w3-ripple w3-padding-small w3-right').html('<i class="fas fa-trash"></i>');
-    name.text(a);
-    item.append(circle, name, del);
-    $('#list_view').append(item);
-    $('#list_view .fa-trash').click(function(){
-        $(this).closest('.items').remove();
-    })
-    $('#list_view .circle i').click(function(){
-        $(this).toggleClass('fa-circle');
-        $(this).toggleClass('fa-check-circle');
-        $(this).parent().next().toggleClass('w3-disabled');
-    })
-    $('#todo .w3-rest').text("");
-});
-
 var isMoving = false;
 
 function options(){
-openApps.forEach(elem => {
-    document.getElementById(elem+'_title').addEventListener('mousedown', function(){
+Object.keys(openApps).forEach(elem => {
+    document.getElementById(openApps[elem].title).addEventListener('mousedown', function(){
         isMoving = true;
     });
-    document.getElementById(elem+'_title').addEventListener('mouseup', function(){
+    document.getElementById(openApps[elem].title).addEventListener('mouseup', function(){
         isMoving = false;
     });
     document.getElementById(elem).addEventListener('mousemove', function(e){

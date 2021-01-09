@@ -1,0 +1,29 @@
+<div class="w3-row">
+    <div class="w3-col w3-black w3-button w3-right w3-padding-small addBtn" id='addBtn' style="width: 50px;">Add</div>
+    <div class="w3-padding-small w3-rest" contenteditable="true"></div>
+</div>
+<div id="list_view"></div>
+<script>
+$('#addBtn').click(function (e) { 
+    let a = $('#todo .w3-rest').text();
+    if(a.length==0){
+        return;
+    }
+    let item = $('<div></div>').attr('class','items');
+    let circle = $('<div></div>').attr('class','w3-ripple w3-left w3-padding-small circle').html('<i class="far fa-circle"></i>');
+    let name = $('<div></div>').attr('class','w3-left w3-padding-small name');
+    let del = $('<div></div>').attr('class','w3-ripple w3-padding-small w3-right').html('<i class="fas fa-trash"></i>');
+    name.text(a);
+    item.append(circle, name, del);
+    $('#list_view').append(item);
+    $('#list_view .fa-trash').click(function(){
+        $(this).closest('.items').remove();
+    })
+    $('#list_view .circle i').click(function(){
+        $(this).toggleClass('fa-circle');
+        $(this).toggleClass('fa-check-circle');
+        $(this).parent().next().toggleClass('w3-disabled');
+    })
+    $('#todo .w3-rest').text("");
+});
+</script>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notebook</title>
+    <link rel="stylesheet" href="css/w3.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+    <div class="w3-bar w3-card">
+        <div class="w3-bar-item w3-hide-large"><i class="fas fa-bars"></i></div>
+        <div class="w3-bar-item .name">Notebook</div>
+        <div class="w3-bar-item w3-right"><span id="words">0</span></div>
+    </div>
+
+    <div id="sidebar" class="w3-sidebar w3-collapse w3-padding" style="width: 250px;">
+        <div class="w3-margin-bottom">
+            <div class="heading">Font size</div>
+            <div class="w3-dark-gray w3-round w3-border">
+                <div class="third w3-button w3-border-right" id="fontPlus">A <small>+</small></div>
+                <div class="third w3-padding w3-center w3-border-right" id="fontValue" contenteditable="true">15</div>
+                <div class="third w3-button" id="fontMinus">A <small>-</small></div>
+            </div>
+        </div>
+
+        <div class="w3-margin-bottom">
+            <div class="heading">Font family</div>
+            <div class="w3-dark-gray w3-round" id="list">
+                <div class="w3-padding"><span id="fontName">Cambria</span>
+                    <div class="w3-right"><i class="fas fa-caret-down"></i></div>
+                </div>
+                <ul class="w3-ul w3-border-top w3-hide">
+                    <li>Cambria</li>
+                    <li>Monotype Corsiva</li>
+                    <li>Roboto</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="w3-margin-bottom">
+            <div class="heading">Text alignment</div>
+            <div class="w3-dark-gray w3-round" id="list1">
+                <div class="w3-padding"><span id="textAlign">Left</span>
+                    <div class="w3-right"><i class="fas fa-caret-down"></i></div>
+                </div>
+                <ul class="w3-ul w3-border-top w3-hide">
+                    <li>Left</li>
+                    <li>Center</li>
+                    <li>Right</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="w3-margin-bottom">
+            <div class="heading">Theme</div>
+            <div class="w3-padding w3-dark-gray w3-round">Dark
+                <div class="w3-right" id="theme"><i class="fas fa-toggle-off"></i></div>
+            </div>
+        </div>
+
+        <div id="buttons">
+			<input class="w3-hide" id="file" type="file" onchange="readFile(this)" />
+            <div class="w3-button w3-green w3-round w3-margin-bottom" id="save"><i class="fas fa-upload"></i>
+                Upload
+			</div>
+            <!--
+			<a href="work.txt" style="text-decoration: none;">
+                <div class="w3-button w3-green w3-round"><i class="fas fa-download"></i> Download</div>
+            </a>
+			-->
+        </div>
+    </div>
+
+    <div id="main" class="w3-main w3-padding" style="margin-left: 250px;">
+        <textarea id="textarea"></textarea>
+    </div>
+
+    <script src="js/jquery-3.4.1.js"></script>
+    <script src="js/index.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script>
+	$("#save").click(function(){
+		$("#file").click();
+	})
+	
+	function readFile(input) {
+  let file = input.files[0];
+
+  let reader = new FileReader();
+
+  reader.readAsText(file);
+
+  reader.onload = function() {
+    $("#textarea").val(reader.result);
+  };
+
+  reader.onerror = function() {
+    console.log(reader.error);
+  };
+}
+	</script>
+</body>
+
+</html>

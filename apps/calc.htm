@@ -1,0 +1,33 @@
+<div id="display" contenteditable="true"></div>
+<div class="buttons">
+    <div onclick="insert(1)" class="button">1</div>
+    <div onclick="insert(2)" class="button">2</div>
+    <div onclick="insert(3)" class="button">3</div>
+    <div onclick="insert('+')" class="button symbol"><i class="fas fa-plus"></i></div>
+    <div onclick="insert(4)" class="button">4</div>
+    <div onclick="insert(5)" class="button">5</div>
+    <div onclick="insert(6)" class="button">6</div>
+    <div onclick="insert('-')" class="button symbol"><i class="fas fa-minus"></i></div>
+    <div onclick="insert(7)" class="button">7</div>
+    <div onclick="insert(8)" class="button">8</div>
+    <div onclick="insert(9)" class="button">9</div>
+    <div onclick="insert('*')" class="button symbol"><i class="fas fa-times"></i></div>
+    <div onclick="insert('.')" class="button">.</div>
+    <div onclick="insert(0)" class="button">0</div>
+    <div onclick="back()" class="button symbol"><i class="fas fa-arrow-left"></i></div>
+    <div onclick="insert('/')" class="button symbol"><i class="fas fa-divide"></i></div>
+    <div class="button symbol" onclick="$('#display').text(eval($('#display').text()))" style="width:165px"><i
+            class="fas fa-equals"></i></div>
+    <div onclick="$('#display').text('')" class="button symbol">C</div>
+</div>
+<script>
+    function insert(n){
+    $("#display").append(n);
+}
+
+function back(){
+    let x = $("#display").text();
+    x = x.substr(0, x.length-1);
+    $("#display").text(x);
+}
+</script>
